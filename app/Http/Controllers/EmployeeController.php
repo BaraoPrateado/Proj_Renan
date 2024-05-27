@@ -31,9 +31,8 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $status = "Employee Added!";
         Employee::create($input);
-        return redirect('employee');
+        return redirect('employee')->with('flash_message', 'Employee Added!');
     }
 
     /**
@@ -49,15 +48,19 @@ class EmployeeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $employee = Employee::find($id);
+        return view('crudE.employee-edit', ['employees' => $employee]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $employee = Employee::find($id);
+        $input = $request->all();
+        $employee->update($input);
+        return redirect('employee')->with('flash_message', 'Employee Update!');
     }
 
     /**
@@ -65,6 +68,7 @@ class EmployeeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Employee::destroy($id);
+        return redirect('employee')->with('flash_message', 'Student Deleted!');
     }
 }

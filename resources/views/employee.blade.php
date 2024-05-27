@@ -44,16 +44,20 @@
                                             <td>{{ $employee->address }}</td>
 
                                             <td>
-                                                <a href="{{ url('') }}" title="Edit Employee">
-                                                    <button class="btn btn-warning btn-sm">
+                                                <a href="{{ route('employee.edit', ['employee' => $employee->id]) }}" title="Edit Employee">
+                                                    <button class= "btn btn-warning btn-sm">
                                                         Edit
                                                     </button>
                                                 </a>
-                                                <a href="{{ url('') }}" title="Delete Employee">
-                                                    <button class="btn btn-danger btn-sm">
+
+                                                <form method="POST" action="{{ route('employee.destroy', ['employee' => $employee->id]) }}"
+                                                    accept-charset="UTF-8" style="display:inline">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+                                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete Student" onclick="return confirm('Confirm delete?')">
                                                         Delete
                                                     </button>
-                                                </a>
+                                                </form>
                                             </td>
                                         </tr>
                                     @endforeach
