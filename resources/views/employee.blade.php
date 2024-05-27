@@ -44,20 +44,16 @@
                                             <td>{{ $employee->address }}</td>
 
                                             <td>
-                                                <a href="{{ url('/student/' . $employee->id) }}" title="View Student">
-                                                    <button class="btn btn-info btn-sm"><i class="fa fa-eye"
-                                                            aria-hidden="true"></i>
-                                                        View
-                                                    </button>
-                                                </a>
-                                                <a href="{{ url('/student/' . $employee->id . '/edit') }}"
-                                                    title="Edit Student">
-                                                    <button class="btn btn-primary btn-sm">
-
+                                                <a href="{{ url('') }}" title="Edit Employee">
+                                                    <button class="btn btn-warning btn-sm">
                                                         Edit
                                                     </button>
                                                 </a>
-  
+                                                <a href="{{ url('') }}" title="Delete Employee">
+                                                    <button class="btn btn-danger btn-sm">
+                                                        Delete
+                                                    </button>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

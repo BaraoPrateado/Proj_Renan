@@ -22,7 +22,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('crudE.employee-create');
     }
 
     /**
@@ -30,7 +30,10 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $status = "Employee Added!";
+        Employee::create($input);
+        return redirect('employee');
     }
 
     /**

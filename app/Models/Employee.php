@@ -14,6 +14,6 @@ class Employee extends Model
     protected $fillable = [
         'name',
         'cpf',
-        'addrees',
+        'address',
     ];
 }
