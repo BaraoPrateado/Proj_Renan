@@ -46,7 +46,7 @@
                                             <td>
                                                 <a href="{{ route('employee.edit', ['employee' => $employee->id]) }}" title="Edit Employee">
                                                     <button class= "btn btn-warning btn-sm">
-                                                        Edit
+                                                        {{ __('Edit') }}
                                                     </button>
                                                 </a>
 
@@ -55,7 +55,7 @@
                                                     {{ method_field('DELETE') }}
                                                     {{ csrf_field() }}
                                                     <button type="submit" class="btn btn-danger btn-sm" title="Delete Student" onclick="return confirm('Confirm delete?')">
-                                                        Delete
+                                                        {{ __('Delete') }}
                                                     </button>
                                                 </form>
                                             </td>

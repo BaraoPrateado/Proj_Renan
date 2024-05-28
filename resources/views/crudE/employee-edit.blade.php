@@ -14,10 +14,15 @@
                         @method("PATCH")
 
                         <label>{{ __("Name") }}</label></br>
+
                         <input type="text" name="name" id="name" value="{{ $employees->name }}" class="form-control"></br>
+
                         <label>CPF</label></br>
+
                         <input type="text" name="cpf" id="cpf" value="{{ $employees->cpf }}" class="form-control"></br>
+
                         <label>{{ __("Address") }}</label></br>
+
                         <input type="text" name="address" id="address" value="{{ $employees->address }}" class="form-control"></br>
 
                         <input type="submit" value="Save" class="btn btn-success"></br>
