@@ -30,6 +30,12 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'cpf' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+        ]);
+
         $input = $request->all();
         Employee::create($input);
         return redirect('employee')->with('flash_message', 'Employee Added!');
@@ -57,6 +63,12 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'cpf' => ['required', 'string', 'max:255'],
+            'address' => ['required', 'string', 'max:255'],
+        ]);
+
         $employee = Employee::find($id);
         $input = $request->all();
         $employee->update($input);
