@@ -19,7 +19,7 @@
 
                         <label>CPF</label></br>
 
-                        <input type="text" name="cpf" id="cpf" value="{{ $employees->cpf }}" class="form-control"></br>
+                        <input x-data type="text" name="cpf" id="cpf" x-mask="999.999.999-99" value="{{ $employees->cpf }}" class="form-control"></br>
 
                         <label>{{ __("Address") }}</label></br>
 

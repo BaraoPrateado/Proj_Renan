@@ -69,6 +69,6 @@ class EmployeeController extends Controller
     public function destroy(string $id)
     {
         Employee::destroy($id);
-        return redirect('employee')->with('flash_message', 'Student Deleted!');
+        return redirect('employee')->with('flash_message', 'Employee Deleted!');
     }
 }

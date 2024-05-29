@@ -8,6 +8,9 @@
     <div class="container">
         <div class="row" style="margin:20px">
             <div class="col-12">
+
+
+
                 <div class="card">
 
                     <div class="card-header">
@@ -35,32 +38,41 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @if($employees->count() > 0)
+                                        @foreach ($employees as $employee)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $employee->name }}</td>
+                                                <td>{{ $employee->cpf }}</td>
+                                                <td>{{ $employee->address }}</td>
 
-                                    @foreach ($employees as $employee)
+                                                <td>
+                                                    <a href="{{ route('employee.edit', ['employee' => $employee->id]) }}"
+                                                        title="Edit Employee">
+                                                        <button class="btn btn-warning btn-sm">
+                                                            {{ __('Edit') }}
+                                                        </button>
+                                                    </a>
+
+                                                    <form method="POST"
+                                                        action="{{ route('employee.destroy', ['employee' => $employee->id]) }}"
+                                                        accept-charset="UTF-8" style="display:inline">
+                                                        {{ method_field('DELETE') }}
+                                                        {{ csrf_field() }}
+                                                        <button type="submit" class="btn btn-danger btn-sm"
+                                                            title="Delete Student"
+                                                            onclick="return confirm('Confirmar delete?')">
+                                                            {{ __('Delete') }}
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    @else
                                         <tr>
-                                            <td>{{ $employee->id }}</td>
-                                            <td>{{ $employee->name }}</td>
-                                            <td>{{ $employee->cpf }}</td>
-                                            <td>{{ $employee->address }}</td>
-
-                                            <td>
-                                                <a href="{{ route('employee.edit', ['employee' => $employee->id]) }}" title="Edit Employee">
-                                                    <button class= "btn btn-warning btn-sm">
-                                                        {{ __('Edit') }}
-                                                    </button>
-                                                </a>
-
-                                                <form method="POST" action="{{ route('employee.destroy', ['employee' => $employee->id]) }}"
-                                                    accept-charset="UTF-8" style="display:inline">
-                                                    {{ method_field('DELETE') }}
-                                                    {{ csrf_field() }}
-                                                    <button type="submit" class="btn btn-danger btn-sm" title="Delete Student" onclick="return confirm('Confirm delete?')">
-                                                        {{ __('Delete') }}
-                                                    </button>
-                                                </form>
-                                            </td>
+                                            <td class="text-center" colspan="5">{{ __('Employees not found!') }}</td>
                                         </tr>
-                                    @endforeach
+                                    @endif
 
                                 </tbody>
                             </table>
@@ -71,4 +83,5 @@
             </div>
         </div>
     </div>
+
 </x-app-layout>

@@ -17,7 +17,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased">
+<body >
     <div class="min-h-screen bg-gray-100">
         @include('layouts.navigation')
 
@@ -36,17 +36,19 @@
         </main>
     </div>
 
-    <!-- @if (isset($status))
-        <div> $status </div>
-        <script> 
-            alert("{{ $status }}");
-        </script>
-    @endif -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-    
+
+    @if (Session::has('flash_message'))
+        {{$message = Session::get('flash_message')}}
+
+        <script>
+            alert("{{ __($message) }}")
+        </script>
+    @endif
+
 </body>
 
 </html>
