@@ -16,9 +16,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        $supplier = Product::with('supplier')->get();
 
-        return view('product', ['products' => $products, 'supplier' => $supplier])->with('product');
+        return view('product', ['products' => $products])->with('product');
     }
 
     /**
@@ -84,7 +83,7 @@ class ProductController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255', 'unique:'.Product::class],
+            'name' => ['required', 'string', 'max:255'],
             'stock' => ['required', 'integer', 'max:9999'],
             'price' => ['required', 'max:9999'],
             'supplier_id' => ['required'],

@@ -14,7 +14,9 @@
                         
                         <label>{{ __("Name") }}</label></br>
                         <input type="text" name="name" id="name" placeholder="Ex: sabonete" class="form-control"></br>
-                        
+                        @error('name')
+                                    <span class="text-danger">{{$message}}</span>
+                        @enderror
                         <label>CNPJ</label></br>
                         <input x-data type="text" name="cnpj" id="cnpj" x-mask="99.999.999/9999-99" placeholder="Ex: 99.999.999/9999-99" class="form-control"></br>
 

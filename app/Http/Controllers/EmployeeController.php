@@ -61,14 +61,13 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        $request->validate([
+        $input = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'cpf' => ['required', 'string', 'max:255', 'unique:'.Employee::class],
+            'cpf' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
         ]);
 
         $employee = Employee::find($id);
-        $input = $request->all();
         $employee->update($input);
         return redirect('employee')->with('flash_message', 'Employee Update!');
     }

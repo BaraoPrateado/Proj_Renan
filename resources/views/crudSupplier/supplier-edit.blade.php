@@ -19,7 +19,7 @@
                             class="form-control"></br>
 
                         <label>CNPJ</label></br>
-                        <input type="number" name="cnpj" id="stock"
+                        <input x-data type="text" name="cnpj" id="cnpj" x-mask="99.999.999/9999-99" id="stock"
                             value="{{ $suppliers->cnpj }}" class="form-control"></br>
 
                         <label>{{ __("Address") }}</label></br>

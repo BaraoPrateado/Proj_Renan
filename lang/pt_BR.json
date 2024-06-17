@@ -165,6 +165,10 @@
   "Editor users have the ability to read, create, and update.": "O editor pode ler, criar e atualizar",
   "Exit": "Sair",
   "Remove": "Remover",
-  "Product": "Produtos",
-  "Supplier": "Forneçedores"
+  "Product": "Produto",
+  "Supplier": "Forneçedor",
+  "Stock": "Estoque",
+  "Price": "Preço",
+  "Products not found!": "Produtos não Achados!",
+  "Suppliers not found!": "Forneçedores não Achados!"
 }
