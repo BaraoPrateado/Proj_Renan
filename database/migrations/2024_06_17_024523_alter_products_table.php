@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->integer('stock');            
-            $table->decimal('price', total: 5, places: 2);
-            $table->timestamps();
+        Schema::table('products', function (Blueprint $table) {
+            $table->foreignId('supplier_id')->default('Sem Fornecedor')->after('price')->constrained('suppliers');
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::table('products', function (Blueprint $table) {
+            $table->dropColumn('suppliers_id');
+        });
     }
 };

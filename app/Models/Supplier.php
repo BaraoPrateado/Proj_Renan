@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Supplier extends Model
 {
     use HasFactory;
 
-    protected $table = 'products';
+    protected $table = 'suppliers';
     protected $primaryKey = 'id';
     protected $fillable = [
         'name',
-        'stock',
-        'price',
-        'supplier_id',
+        'cnpj',
+        'address',
     ];
 
-    function supplier() {
-        return $this->belongsTo(Product::class);
+    function product() {
+        return $this->hasMany(Product::class);
     }
 }

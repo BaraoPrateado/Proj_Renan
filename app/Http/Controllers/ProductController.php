@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Supplier;
 
 class ProductController extends Controller
 {
@@ -16,7 +17,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
-        return view('product', ['products' => $products]);
+        return view('product', ['products' => $products])->with('product');
     }
 
     /**
@@ -24,7 +25,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('crudProduct.product-create');
+        $supplierNames = Supplier::orderBy('name', 'asc')->get();
+
+        return view('crudProduct.product-create',  [
+            'supplierNames' => $supplierNames,
+        ]);
     }
 
     /**
@@ -32,14 +37,19 @@ class ProductController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+        $request->validate([
+            'name' => ['required', 'string', 'max:255', 'unique:'.Product::class],
             'stock' => ['required', 'integer', 'max:9999'],
             'price' => ['required', 'max:9999'],
+            'supplier_id' => ['required'],
         ]);
 
-        $input = $request->all();
-        Product::create($input);
+        $product = Product::create([
+            'name' => $request->name,
+            'stock' => $request->stock,
+            'price' => $request->price,
+            'supplier_id' => $request->supplier_id,
+        ]);
 
         return redirect('product')->with('flash_message', 'Product Added!');
     }
@@ -57,8 +67,14 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
+        $supplierNames = Supplier::orderBy('name', 'asc')->get();
         $product = Product::find($id);
-        return view('crudProduct.product-edit', ['products' => $product]);
+
+
+        return view('crudProduct.product-edit', [
+            'products' => $product,
+            'supplierNames' => $supplierNames,
+    ]);
     }
 
     /**
@@ -66,15 +82,22 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+        $request->validate([
+            'name' => ['required', 'string', 'max:255', 'unique:'.Product::class],
             'stock' => ['required', 'integer', 'max:9999'],
             'price' => ['required', 'max:9999'],
+            'supplier_id' => ['required'],
         ]);
-        
+
         $product = Product::find($id);
-        $input = $request->all();
-        $product->update($input);
+
+        $product->update([
+            'name' => $request->name,
+            'stock' => $request->stock,
+            'price' => $request->price,
+            'supplier_id' => $request->supplier_id,
+        ]);
+
         return redirect('product')->with('flash_message', 'Product Update!');
     }
 

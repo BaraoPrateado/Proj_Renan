@@ -3,12 +3,11 @@
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::get('/', function () {
-    return view('teste');
+    return view('start');
 })->name('start');
 
 Route::middleware('auth')->group(function () {
@@ -22,7 +21,8 @@ Route::middleware('auth')->group(function () {
     
     Route::resources([
         '/employee' => EmployeeController::class,
-        '/product' => ProductController::class
+        '/product' => ProductController::class,
+        '/supplier' => SupplierController::class,
     ]);
 });
 

@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 
+
 class EmployeeController extends Controller
 {
     /**
@@ -31,9 +32,9 @@ class EmployeeController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'cpf' => ['required', 'string', 'max:255'],
+            'cpf' => ['required', 'string', 'max:255', 'unique:'.Employee::class],
             'address' => ['required', 'string', 'max:255'],
         ]);
 
@@ -60,9 +61,9 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'cpf' => ['required', 'string', 'max:255'],
+            'cpf' => ['required', 'string', 'max:255', 'unique:'.Employee::class],
             'address' => ['required', 'string', 'max:255'],
         ]);
 
