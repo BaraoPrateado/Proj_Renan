@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
@@ -18,7 +19,7 @@ class Product extends Model
         'supplier_id',
     ];
 
-    function supplier() {
-        return $this->belongsTo(Product::class);
+    function supplier():BelongsTo {
+        return $this->belongsTo(Product::class,  'supplier_id');
     }
 }

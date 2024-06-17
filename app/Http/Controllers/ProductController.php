@@ -16,8 +16,9 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
+        $supplier = Product::with('supplier')->get();
 
-        return view('product', ['products' => $products])->with('product');
+        return view('product', ['products' => $products, 'supplier' => $supplier])->with('product');
     }
 
     /**
@@ -48,7 +49,7 @@ class ProductController extends Controller
             'name' => $request->name,
             'stock' => $request->stock,
             'price' => $request->price,
-            'supplier_id' => $request->supplier_id,
+            'supplier_id' => $request->supplier_id
         ]);
 
         return redirect('product')->with('flash_message', 'Product Added!');

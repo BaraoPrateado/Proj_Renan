@@ -46,7 +46,7 @@
                                                 <td>{{ $product->name }}</td>
                                                 <td>{{ $product->stock }}</td>
                                                 <td>R$ {{ $preco_formatado = number_format($product->price, 2, ',', '.') }}</td>
-                                                <td>{{ $product->supplier->name }}</td>
+                                                <td>{{ $product->supplier_id }}</td>
 
                                                 <td>
                                                     <a href="{{ route('product.edit', ['product' => $product->id]) }}"

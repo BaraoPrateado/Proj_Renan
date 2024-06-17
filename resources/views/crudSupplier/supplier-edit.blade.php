@@ -18,12 +18,12 @@
                         <input type="text" name="name" id="name" value="{{ $suppliers->name }}"
                             class="form-control"></br>
 
-                        <label>{{ __("Stock") }}</label></br>
-                        <input type="number" name="stock" id="stock"
-                            value="{{ $suppliers->stock }}" class="form-control"></br>
+                        <label>CNPJ</label></br>
+                        <input type="number" name="cnpj" id="stock"
+                            value="{{ $suppliers->cnpj }}" class="form-control"></br>
 
-                        <label>{{ __("Price") }}</label></br>
-                        <input type="number" inputmode="decimal" min="0" name="price" id="price" value="{{ $suppliers->price }}"
+                        <label>{{ __("Address") }}</label></br>
+                        <input type="text" name="address" id="price" value="{{ $suppliers->address }}"
                             class="form-control"></br>
 
                         <input type="submit" value="{{ __('Save') }}" class="btn btn-success">
