@@ -5,17 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use App\Models\Employee;
+use App\Models\Product;
 
-class EmployeeController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $employees = Employee::all();
-        return view('employee', ['employees' => $employees]);
+        $products = Product::all();
+
+        return view('product', ['products' => $products]);
     }
 
     /**
@@ -23,7 +24,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('crudEmployee.employee-create');
+        return view('crudProduct.product-create');
     }
 
     /**
@@ -33,43 +34,48 @@ class EmployeeController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'cpf' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
+            'stock' => ['required', 'integer', 'max:9999'],
+            'price' => ['required', 'max:9999'],
         ]);
 
         $input = $request->all();
-        Employee::create($input);
-        return redirect('employee')->with('flash_message', 'Employee Added!');
+        Product::create($input);
+
+        return redirect('product')->with('flash_message', 'Product Added!');
     }
 
     /**
      * Display the specified resource.
      */
-    
+    public function show(string $id)
+    {
+        //
+    }
+
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
     {
-        $employee = Employee::find($id);
-        return view('crudEmployee.employee-edit', ['employees' => $employee]);
+        $product = Product::find($id);
+        return view('crudProduct.product-edit', ['products' => $product]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, string $id)
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'cpf' => ['required', 'string', 'max:255'],
-            'address' => ['required', 'string', 'max:255'],
+            'stock' => ['required', 'integer', 'max:9999'],
+            'price' => ['required', 'max:9999'],
         ]);
-
-        $employee = Employee::find($id);
+        
+        $product = Product::find($id);
         $input = $request->all();
-        $employee->update($input);
-        return redirect('employee')->with('flash_message', 'Employee Update!');
+        $product->update($input);
+        return redirect('product')->with('flash_message', 'Product Update!');
     }
 
     /**
@@ -77,7 +83,7 @@ class EmployeeController extends Controller
      */
     public function destroy(string $id)
     {
-        Employee::destroy($id);
-        return redirect('employee')->with('flash_message', 'Employee Deleted!');
+        Product::destroy($id);
+        return redirect('product')->with('flash_message', 'Product Deleted!');
     }
 }

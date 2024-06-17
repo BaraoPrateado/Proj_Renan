@@ -23,7 +23,9 @@
 
                         <input type="text" name="address" id="address" placeholder="Ex: Rua Antonio" class="form-control"></br>
 
-                        <input type="submit" value="{{ __('Save') }}" class="btn btn-success"></br>
+                        <input type="submit" value="{{ __('Save') }}" class="btn btn-success">  
+                        <a href="{{ route('employee.index') }}" class="btn btn-warning">{{ __('Exit') }}</a>
+                        </br>
                     </form>
 
                 </div>

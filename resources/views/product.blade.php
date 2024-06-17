@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Employee') }}
+            {{ __('Product') }}
         </h2>
     </x-slot>
 
@@ -15,13 +15,13 @@
 
                     <div class="card-header">
                         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-                            {{ __('Employees CRUD') }}
+                            {{ __('Products CRUD') }}
                         </h2>
                     </div>
 
                     <div class="card-body">
-                        <a href="{{ route('employee.create') }}" class="btn btn-success btn-sm"
-                            title="Add New Employee">
+                        <a href="{{ route('product.create') }}" class="btn btn-success btn-sm"
+                            title="Add New Product">
                             {{ __('Add New') }}
                         </a>
                         <br>
@@ -31,36 +31,36 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>{{ __('Name')}}</th>
-                                        <th>CPF</th>
-                                        <th>{{ __('Address')}}</th>
-                                        <th>{{ __('Actions')}}</th>
+                                        <th>{{ __('Name') }}</th>
+                                        <th>{{ __('Stock') }}</th>
+                                        <th>{{ __('Price') }}</th>
+                                        <th>{{ __('Actions') }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if($employees->count() > 0)
-                                        @foreach ($employees as $employee)
+                                    @if($products->count() > 0)
+                                        @foreach ($products as $product)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $employee->name }}</td>
-                                                <td>{{ $employee->cpf }}</td>
-                                                <td>{{ $employee->address }}</td>
+                                                <td>{{ $product->name }}</td>
+                                                <td>{{ $product->stock }}</td>
+                                                <td>R$ {{ $preco_formatado = number_format($product->price, 2, ',', '.') }}</td>
 
                                                 <td>
-                                                    <a href="{{ route('employee.edit', ['employee' => $employee->id]) }}"
-                                                        title="Edit Employee">
+                                                    <a href="{{ route('product.edit', ['product' => $product->id]) }}"
+                                                        title="Edit Product">
                                                         <button class="btn btn-warning btn-sm">
                                                             {{ __('Edit') }}
                                                         </button>
                                                     </a>
 
                                                     <form method="POST"
-                                                        action="{{ route('employee.destroy', ['employee' => $employee->id]) }}"
+                                                        action="{{ route('product.destroy', ['product' => $product->id]) }}"
                                                         accept-charset="UTF-8" style="display:inline">
                                                         {{ method_field('DELETE') }}
                                                         {{ csrf_field() }}
                                                         <button type="submit" class="btn btn-danger btn-sm"
-                                                            title="Delete Employee"
+                                                            title="Delete Product"
                                                             onclick="return confirm('{{ __('Confirm delete?') }}')">
                                                             {{ __('Delete') }}
                                                         </button>
@@ -70,7 +70,7 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td class="text-center" colspan="5">{{ __('Employees not found!') }}</td>
+                                            <td class="text-center" colspan="5">{{ __('Products not found!') }}</td>
                                         </tr>
                                     @endif
 
