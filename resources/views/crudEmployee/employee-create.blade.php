@@ -18,10 +18,10 @@
                         <label>{{ __("Name") }}</label></br>
                         <input type="text" name="name" id="name" placeholder="Ex: João" value="{{old('name')}}"
                             class="form-control"></br>
-
                         <div>
                             @error('name')
                                 <span class="text-danger">{{$message}}</span>
+                                <br> <br>
                             @enderror
                         </div>
 
@@ -31,6 +31,7 @@
                         <div>
                             @error('cpf')
                                 <span class="text-danger">{{$message}}</span>
+                                <br> <br>
                             @enderror
                         </div>
 
@@ -40,6 +41,7 @@
                         <div>
                             @error('address')
                                 <span class="text-danger">{{$message}}</span>
+                                <br> <br>
                             @enderror
                         </div>
 

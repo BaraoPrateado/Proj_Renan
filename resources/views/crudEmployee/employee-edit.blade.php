@@ -15,19 +15,34 @@
                         @method("PATCH")
 
                         <label>{{ __("Name") }}</label></br>
-
                         <input type="text" name="name" id="name" value="{{ old('name',$employees->name) }}"
                             class="form-control"></br>
+                            <div>
+                            @error('name')
+                                <span class="text-danger">{{$message}}</span>
+                                <br> <br>
+                            @enderror
+                        </div>
 
                         <label>CPF</label></br>
-
                         <input x-data type="text" name="cpf" id="cpf" x-mask="999.999.999-99"
                             value="{{ old('cpf',$employees->cpf) }}" class="form-control"></br>
+                            <div>
+                            @error('cpf')
+                                <span class="text-danger">{{$message}}</span>
+                                <br> <br>
+                            @enderror
+                        </div>
 
                         <label>{{ __("Address") }}</label></br>
-
                         <input type="text" name="address" id="address" value="{{ old('address',$employees->address) }}"
                             class="form-control"></br>
+                            <div>
+                            @error('address')
+                                <span class="text-danger">{{$message}}</span>
+                                <br> <br>
+                            @enderror
+                        </div>
                             
                         <a href="{{ route('employee.index') }}" class="btn btn-warning">{{ __('Exit') }}</a>
                         <input type="submit" value="{{ __('Save') }}" class="btn btn-success">
