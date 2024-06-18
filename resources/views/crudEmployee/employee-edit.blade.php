@@ -16,21 +16,21 @@
 
                         <label>{{ __("Name") }}</label></br>
 
-                        <input type="text" name="name" id="name" value="{{ $employees->name }}"
+                        <input type="text" name="name" id="name" value="{{ old('name',$employees->name) }}"
                             class="form-control"></br>
 
                         <label>CPF</label></br>
 
                         <input x-data type="text" name="cpf" id="cpf" x-mask="999.999.999-99"
-                            value="{{ $employees->cpf }}" class="form-control"></br>
+                            value="{{ old('cpf',$employees->cpf) }}" class="form-control"></br>
 
                         <label>{{ __("Address") }}</label></br>
 
-                        <input type="text" name="address" id="address" value="{{ $employees->address }}"
+                        <input type="text" name="address" id="address" value="{{ old('address',$employees->address) }}"
                             class="form-control"></br>
-
-                        <input type="submit" value="{{ __('Save') }}" class="btn btn-success">
+                            
                         <a href="{{ route('employee.index') }}" class="btn btn-warning">{{ __('Exit') }}</a>
+                        <input type="submit" value="{{ __('Save') }}" class="btn btn-success">
                         </br>
                     </form>
 

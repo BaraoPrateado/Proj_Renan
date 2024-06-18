@@ -13,18 +13,18 @@
                         {!! csrf_field() !!}
                         
                         <label>{{ __("Name") }}</label></br>
-                        <input type="text" name="name" id="name" placeholder="Ex: sabonete" class="form-control"></br>
+                        <input type="text" name="name" id="name" placeholder="Ex: sabonete" value="{{ old('name') }}" class="form-control"></br>
                         @error('name')
                                     <span class="text-danger">{{$message}}</span>
                         @enderror
                         <label>CNPJ</label></br>
-                        <input x-data type="text" name="cnpj" id="cnpj" x-mask="99.999.999/9999-99" placeholder="Ex: 99.999.999/9999-99" class="form-control"></br>
+                        <input x-data type="text" name="cnpj" id="cnpj" x-mask="99.999.999/9999-99" value="{{ old('cnpj') }}" placeholder="Ex: 99.999.999/9999-99" class="form-control"></br>
 
                         <label>{{ __("Address") }}</label></br>
-                        <input type="text" name="address" id="address" placeholder="Ex: Rua Antonio" class="form-control"></br>
+                        <input type="text" name="address" id="address" placeholder="Ex: Rua Antonio" value="{{ old('address') }}" class="form-control"></br>
 
-                        <input type="submit" value="{{ __('Save') }}" class="btn btn-success">  
                         <a href="{{ route('supplier.index') }}" class="btn btn-warning">{{ __('Exit') }}</a>
+                        <input type="submit" value="{{ __('Save') }}" class="btn btn-success">  
                         </br>
                     </form>
 

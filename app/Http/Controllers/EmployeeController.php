@@ -34,15 +34,20 @@ class EmployeeController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $validation = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'cpf' => ['required', 'string', 'max:255', 'unique:'.Employee::class],
             'address' => ['required', 'string', 'max:255'],
         ]);
 
-        $input = $request->all();
-        Employee::create($input);
-        return redirect('employee')->with('flash_message', 'Employee Added!');
+        $input = Employee::create($validation);
+        if ($input) {
+            session()->flash('flash_message', 'Funcionário Adicionado com Sucesso');
+            return redirect(route('employee.index'));
+        } else {
+            session()->flash('error', 'Ocorreu algum problema');
+            return redirect(route('employee.create'));
+        }
     }
 
     /**
@@ -65,15 +70,21 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id): RedirectResponse
     {
-        $input = $request->validate([
+        $validation = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'cpf' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
         ]);
 
         $employee = Employee::find($id);
-        $employee->update($input);
-        return redirect('employee')->with('flash_message', 'Employee Update!');
+        $input = $employee->update($validation);
+        if ($input) {
+            session()->flash('flash_message', 'Funcionário Adicionado com Sucesso');
+            return redirect(route('employee.index'));
+        } else {
+            session()->flash('error', 'Ocorreu algum problema');
+            return redirect(route('employee.edit'));
+        }
     }
 
     /**

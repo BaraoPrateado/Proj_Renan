@@ -16,16 +16,16 @@
                         @method("PATCH")
 
                         <label>{{ __("Name") }}</label></br>
-                        <input type="text" name="name" id="name" value="{{ $products->name }}"
+                        <input type="text" name="name" id="name" value="{{ old('name',$products->name) }}"
                             class="form-control"></br>
 
                         <label>{{ __("Stock") }}</label></br>
-                        <input type="number" name="stock" id="stock" value="{{ $products->stock }}"
+                        <input type="number" name="stock" id="stock" value="{{ old('stock',$products->stock) }}"
                             class="form-control"></br>
 
                         <label>{{ __("Price") }}</label></br>
                         <input type="number" inputmode="decimal" min="0" name="price" id="price"
-                            value="{{ $products->price }}" class="form-control"></br>
+                            value="{{ old('price',$products->price) }}" class="form-control"></br>
 
                         <label for="supplier_id">{{ __("Supplier") }}</label></br>
                         <select name="supplier_id" id="supplier_id" class="form-select">
@@ -40,8 +40,8 @@
 
                         <br>
 
-                        <input type="submit" value="{{ __('Save') }}" class="btn btn-success">
                         <a href="{{ route('product.index') }}" class="btn btn-warning">{{ __('Exit') }}</a>
+                        <input type="submit" value="{{ __('Save') }}" class="btn btn-success">
                         </br>
                     </form>
 

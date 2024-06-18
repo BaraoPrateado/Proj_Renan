@@ -39,21 +39,21 @@ class ProductController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $validation = $request->validate([
             'name' => ['required', 'string', 'max:255', 'unique:'.Product::class],
             'stock' => ['required', 'integer', 'max:9999'],
             'price' => ['required', 'max:9999'],
             'supplier_id' => ['required'],
         ]);
 
-        $product = Product::create([
-            'name' => $request->name,
-            'stock' => $request->stock,
-            'price' => $request->price,
-            'supplier_id' => $request->supplier_id
-        ]);
-
-        return redirect('product')->with('flash_message', 'Product Added!');
+        $input = Product::create($validation);
+        if ($input) {
+            session()->flash('flash_message', 'Produto Adicionado com Sucesso');
+            return redirect(route('product.index'));
+        } else {
+            session()->flash('error', 'Ocorreu algum problema');
+            return redirect(route('product.create'));
+        }
     }
 
     /**
@@ -86,23 +86,23 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
+        $validation = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'stock' => ['required', 'integer', 'max:9999'],
-            'price' => ['required', 'max:9999'],
+            'stock' => ['required', 'integer'],
+            'price' => ['required'],
             'supplier_id' => ['required'],
         ]);
 
         $product = Product::find($id);
+        $input = $product->update($validation);
 
-        $product->update([
-            'name' => $request->name,
-            'stock' => $request->stock,
-            'price' => $request->price,
-            'supplier_id' => $request->supplier_id,
-        ]);
-
-        return redirect('product')->with('flash_message', 'Product Update!');
+        if ($input) {
+            session()->flash('flash_message', 'Produto Adicionado com Sucesso');
+            return redirect(route('product.index'));
+        } else {
+            session()->flash('error', 'Ocorreu algum problema');
+            return redirect(route('product.edit'));
+        }
     }
 
     /**

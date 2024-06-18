@@ -34,16 +34,21 @@ class SupplierController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $validation = $request->validate([
             'name' => ['required', 'string', 'max:255', 'unique:'.Supplier::class],
-            'cnpj' => ['required', 'string', 'max:255',],
+            'cnpj' => ['required', 'string', 'max:20',],
             'address' => ['required', 'string', 'max:255',],
         ]);
 
-        $input = $request->all();
-        Supplier::create($input);
+        $input = Supplier::create($validation);
 
-        return redirect('supplier')->with('flash_message', 'Supplier Added!');
+        if ($input) {
+            session()->flash('flash_message', 'Fornecedor Adicionada com Sucesso');
+            return redirect(route('supplier.index'));
+        } else {
+            session()->flash('error', 'Ocorreu algum problema');
+            return redirect(route('suppplier.create'));
+        }
     }
 
     /**
@@ -69,16 +74,22 @@ class SupplierController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
+        $validation = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'cnpj' => ['required', 'string', 'max:255',],
+            'cnpj' => ['required', 'string', 'max:20',],
             'address' => ['required', 'string', 'max:255',],
         ]);
         
-        $supplier = supplier::find($id);
-        $input = $request->all();
-        $supplier->update($input);
-        return redirect('supplier')->with('flash_message', 'Supplier Update!');
+        $supplier = Supplier::find($id);
+        $input = $supplier->update($validation);
+        
+        if ($input) {
+            session()->flash('flash_message', 'Fornecedor Adicionado com Sucesso');
+            return redirect(route('supplier.index'));
+        } else {
+            session()->flash('error', 'Ocorreu algum problema');
+            return redirect(route('supplier.edit'));
+        }
     }
 
     /**

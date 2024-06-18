@@ -15,13 +15,13 @@
                         {!! csrf_field() !!}
 
                         <label>{{ __("Name") }}</label></br>
-                        <input type="text" name="name" id="name" placeholder="Ex: sabonete" class="form-control"></br>
+                        <input type="text" name="name" id="name" placeholder="Ex: sabonete" value="{{ old('name') }}" class="form-control"></br>
 
                         <label>{{ __("Stock") }}</label></br>
-                        <input type="number" name="stock" id="stock" placeholder="Ex: 25" class="form-control"></br>
+                        <input type="number" name="stock" id="stock" placeholder="Ex: 25" value="{{ old('stock') }}" class="form-control"></br>
 
                         <label>{{ __("Price") }}</label></br>
-                        <input type="number" inputmode="decimal" min="0" step="1.00" name="price" id="price"
+                        <input type="number" inputmode="decimal" min="0" step="1.00" name="price" id="price" value="{{ old('price') }}"
                             placeholder="Ex: 50.00" class="form-control"></br>
 
                         <label for="supplier_id">{{ __("Supplier") }}</label></br>
@@ -36,9 +36,9 @@
                         </select>
 
                         <br>
-
-                        <input type="submit" value="{{ __('Save') }}" class="btn btn-success">
+                    
                         <a href="{{ route('product.index') }}" class="btn btn-warning">{{ __('Exit') }}</a>
+                        <input type="submit" value="{{ __('Save') }}" class="btn btn-success">
                         </br>
                     </form>
 
