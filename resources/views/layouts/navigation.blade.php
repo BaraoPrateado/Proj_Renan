@@ -18,19 +18,19 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('employee.index')" :active="request()->routeIs('employee.index')">
+                    <x-nav-link :href="route('employee.index')" :active="request()->routeIs(['employee.index', 'employee.create', 'employee.edit'])">
                         {{ __('Employee') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')">
+                    <x-nav-link :href="route('product.index')" :active="request()->routeIs(['product.index', 'product.create', 'product.edit'])">
                         {{ __('Product') }}
                     </x-nav-link>
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('supplier.index')" :active="request()->routeIs('supplier.index')">
+                    <x-nav-link :href="route('supplier.index')" :active="request()->routeIs(['supplier.index', 'supplier.create', 'supplier.edit'])">
                         {{ __('Supplier') }}
                     </x-nav-link>
                 </div>

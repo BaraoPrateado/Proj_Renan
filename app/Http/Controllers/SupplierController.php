@@ -24,7 +24,9 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view('crudSupplier.supplier-create');
+        $nome = 'Supplier';
+        
+        return view('crudSupplier.supplier-create', ['nome' => $nome]);
     }
 
     /**
@@ -57,8 +59,9 @@ class SupplierController extends Controller
      */
     public function edit(string $id)
     {
+        $nome = 'Supplier';
         $supplier = Supplier::find($id);
-        return view('crudSupplier.supplier-edit', ['suppliers' => $supplier]);
+        return view('crudSupplier.supplier-edit', ['suppliers' => $supplier, 'nome' => $nome]);
     }
 
     /**

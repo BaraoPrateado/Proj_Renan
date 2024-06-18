@@ -1,4 +1,4 @@
-@extends('../layouts/crud-layout')
+@extends('../layouts/layout-crud')
 
 @section('create')
 

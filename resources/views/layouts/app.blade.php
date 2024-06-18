@@ -17,7 +17,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body >
+<body>
     <div class="min-h-screen bg-gray-100">
         @include('layouts.navigation')
 
@@ -41,12 +41,13 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
+
     @if (Session::has('flash_message'))
-        {{$message = Session::get('flash_message')}}
 
         <script>
-            alert("{{ __($message) }}")
+            alert("{{ __($message = Session::get('flash_message')) }}")
         </script>
+
     @endif
 
 </body>

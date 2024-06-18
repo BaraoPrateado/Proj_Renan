@@ -25,10 +25,12 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $nome = 'Product';
         $supplierNames = Supplier::orderBy('name', 'asc')->get();
 
         return view('crudProduct.product-create',  [
             'supplierNames' => $supplierNames,
+            'nome' => $nome
         ]);
     }
 
@@ -67,6 +69,7 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
+        $nome = 'Product';
         $supplierNames = Supplier::orderBy('name', 'asc')->get();
         $product = Product::find($id);
 
@@ -74,6 +77,7 @@ class ProductController extends Controller
         return view('crudProduct.product-edit', [
             'products' => $product,
             'supplierNames' => $supplierNames,
+            'nome' => $nome,
     ]);
     }
 

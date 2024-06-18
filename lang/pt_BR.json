@@ -166,9 +166,11 @@
   "Exit": "Sair",
   "Remove": "Remover",
   "Product": "Produto",
-  "Supplier": "Forneçedor",
+  "Supplier": "Fornecedor",
   "Stock": "Estoque",
   "Price": "Preço",
   "Products not found!": "Produtos não Achados!",
-  "Suppliers not found!": "Forneçedores não Achados!"
+  "Suppliers not found!": "Forneçedores não Achados!",
+  "Products CRUD": "CRUD Produtos",
+  "Suppliers CRUD": "CRUD Fornecedores"
 }

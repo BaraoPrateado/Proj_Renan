@@ -24,7 +24,9 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('crudEmployee.employee-create');
+        $nome = 'Employee';
+
+        return view('crudEmployee.employee-create', ['nome' => $nome]);
     }
 
     /**
@@ -52,8 +54,10 @@ class EmployeeController extends Controller
      */
     public function edit(string $id)
     {
+        $nome = 'Employee';
+
         $employee = Employee::find($id);
-        return view('crudEmployee.employee-edit', ['employees' => $employee]);
+        return view('crudEmployee.employee-edit', ['employees' => $employee, 'nome' => $nome]);
     }
 
     /**
